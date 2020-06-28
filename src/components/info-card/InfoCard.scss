@@ -1,0 +1,48 @@
+.info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .country-name {
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(242, 242, 242, 0.2);
+        width: 75%;
+    }
+
+    .description {
+    margin-top: 15px;
+    font-size: 13px;
+    align-self: start;
+
+        .category-container {
+            text-align: start;
+            display: flex;
+            justify-content: flex-start;
+            margin: 5px;
+            
+            .new-info {
+                position: absolute;
+                right: 10px;
+                border: 1px solid;
+                border-radius: 30%;
+                padding: 0 5px;
+                &.confirmed {
+                    color: #ef8828;
+                }
+
+                &.deaths {
+                    color: #ed2842;
+                }
+
+                &.recoverd {
+                    color: #28ef64;
+                }
+            }
+        }
+    }
+    img {
+        width: 64px;
+        height: auto;
+    }
+}

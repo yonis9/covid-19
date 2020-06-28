@@ -1,0 +1,64 @@
+import React, { useState, useEffect } from 'react';
+import { Marker } from 'react-map-gl';
+
+import Circle from '../circle/Circle';
+
+import './Markers.scss';
+
+const Markers = ({ data, setCountry, category }) => {
+    const [mappedMarkersData, setMappedData] = useState([])
+
+    useEffect(() => {
+        console.log('effect')
+        console.log(!!data.length)
+        if(data.length) {
+            setMappedData(mapData(data, category));
+        }
+    }, [data, category, setMappedData])
+
+    const mapData = (data, query) => {
+        console.log(data)
+        const filteredData = data.filter(el => el[query] > 0);
+        const countedQueries = filteredData.map(el => el[query])
+
+        const min = Math.min(...countedQueries);
+        const max = Math.max(...countedQueries);
+        const diff = max-min;
+        console.log(diff)
+        return filteredData.map(el => {
+            
+            el.size = el[query] > 0.6 * diff ? 160 :
+                      el[query] > 0.2 * diff ? 120 :
+                      el[query] > 0.1 * diff ? 100 :
+                      el[query] > 0.01 * diff ? 80 :
+                      el[query] > 10000 ? 60 : 20;
+            return el;
+        })
+    }
+
+    console.log('render markers')
+    return (
+    mappedMarkersData.length ? 
+    mappedMarkersData.map(country => {
+        const { location: { lat, long, countryOrRegion }, size } = country;
+
+        if (lat && long)
+        return (
+            <div 
+            className='marker'
+            key={countryOrRegion}
+            >
+                <Marker 
+                latitude={lat}
+                longitude={long}
+                >  
+                    <Circle setCountry={setCountry} country={country} size={size} category={category}/>
+                </Marker>
+            </div>
+        )
+    }) : null
+)}
+
+export default React.memo(Markers);
+
+

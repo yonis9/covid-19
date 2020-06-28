@@ -1,0 +1,24 @@
+.circle {
+    
+   cursor: pointer;
+    transform: translate(-50%, -50%);
+   border-radius: 50%;
+//    transition: 0.3s ease-in-out;
+// height: 50px;
+// width: 50px;
+}
+
+.totalConfirmedCases {
+    fill: rgba($color: #ef8828, $alpha: 0.1);
+    stroke: rgba($color: #ef8828, $alpha: 0.3);
+}
+
+.totalDeaths{
+    fill: rgba($color: #ed2842, $alpha: 0.1);
+    stroke: rgba($color: #ed2842, $alpha: 0.3);
+}
+
+.totalRecoveredCases {
+    fill: rgba($color: #28ef64, $alpha: 0.1);
+    stroke: rgba($color: #28ef64, $alpha: 0.3);
+}
