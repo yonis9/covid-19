@@ -1,0 +1,65 @@
+.categories-container {
+    margin-top: 50px;
+    text-align: center;
+
+    p {
+        margin: 0;
+    }
+
+    .buttons {
+        margin-top: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+
+        :nth-child(1) {
+            color: #ef8828
+        }
+
+        :nth-child(2) {
+            color: #ed2842
+        }
+
+        :nth-child(3) {
+            color: #28ef64
+        }
+
+        button {
+            background-color: Transparent;
+            border: none;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.2mm;
+            outline:none;
+            font-size: 14px;
+            margin: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        
+            &:after {
+                display:block;
+                content: '';
+                padding: 2px;
+                border-bottom: solid 2px;  
+                transform: scaleX(0);  
+                transition: transform 250ms ease-in-out;
+
+                &.open {
+                    transform: scaleX(1);
+                }
+            }
+
+            &.open:after {
+                transform: scaleX(1);  
+            }
+
+            &:hover {
+                transition: 0.3s;
+
+                &:after {
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+}

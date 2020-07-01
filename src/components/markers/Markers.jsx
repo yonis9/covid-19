@@ -10,15 +10,14 @@ const Markers = ({ data, setCountry, category }) => {
 
     useEffect(() => {
         console.log('effect')
-        console.log(!!data.length)
-        if(data.length) {
+        if(data) {
             setMappedData(mapData(data, category));
         }
     }, [data, category, setMappedData])
 
     const mapData = (data, query) => {
         console.log(data)
-        const filteredData = data.filter(el => el[query] > 0);
+        const filteredData = data.stats.breakdowns.filter(el => el[query] > 0);
         const countedQueries = filteredData.map(el => el[query])
 
         const min = Math.min(...countedQueries);
@@ -37,8 +36,7 @@ const Markers = ({ data, setCountry, category }) => {
     }
 
     console.log('render markers')
-    return (
-    mappedMarkersData.length ? 
+    return mappedMarkersData.length ? 
     mappedMarkersData.map(country => {
         const { location: { lat, long, countryOrRegion }, size } = country;
 
@@ -57,7 +55,7 @@ const Markers = ({ data, setCountry, category }) => {
             </div>
         )
     }) : null
-)}
+}
 
 export default React.memo(Markers);
 

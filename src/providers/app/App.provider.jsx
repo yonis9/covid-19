@@ -1,39 +1,16 @@
-import React, { createContext,useEffect, useState} from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const AppContext = createContext({
-    viewPort: {
-        width: '100vw',
-        height: '100vh',
-        latitude: 34,
-        longitude: 20,
-        zoom: 1.5
-      },
-      isMenuOpen: false,
-      category: 'totalConfirmedCases',
-      country: null,
-      data: [],
-      setViewport: () =>{},
-      setCategory: () => {},
-      setIsMenuOpen: () => {},
-      setCountry: () => {},
-      setData: () => {}
-
+    route: '',
+    setRoute: () => {},
+    data: null,
+    setDate: () => {}
 })
 
-
 const AppProvider = ({ children }) => {
-    const [viewport, setViewport] = useState({
-        width: '100vw',
-        height: '100vh',
-        latitude: 34,
-        longitude: 20,
-        zoom: 1.5
-      });
+    const [route, setRoute] = useState('');
+    const [data, setData] = useState(null);
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [category, setCategory] = useState('totalConfirmedCases');
-    const [country, setCountry] = useState(null);
-    const [data, setData] = useState([]);
 
     useEffect(() => {
         console.log('fetch')
@@ -47,28 +24,17 @@ const AppProvider = ({ children }) => {
             const response = await fetch("https://api.smartable.ai/coronavirus/stats/global", requestOptions);
             const result = await response.json();
             console.log(result)
-            setData(result.stats.breakdowns);
+            setData(result);
         }
         fetchData()
     }, [])
-    
 
     return (
-        <AppContext.Provider value={{
-            viewport,
-            isMenuOpen,
-            category,
-            country,
-            data,
-            setViewport,
-            setCategory,
-            setIsMenuOpen,
-            setCountry,
-            setData,
-        }}>
+        <AppContext.Provider value={{route, setRoute, data}}>
             {children}
         </AppContext.Provider>
     )
 }
+
 
 export default AppProvider;

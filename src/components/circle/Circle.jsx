@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
-
-import { AppContext } from '../../providers/app/App.provider';
+import React from 'react';
 
 import './Circle.scss';
-
 
 const Circle = ({ size, category, country, setCountry }) => {
     console.log('circle')

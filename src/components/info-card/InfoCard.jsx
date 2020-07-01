@@ -16,7 +16,7 @@ const InfoCard = ({ country }) => {
     return (
     
     <div className='info-card'>
-        <img src={`https://www.countryflags.io/${isoCode}/flat/64.png`} />
+        <img src={`https://www.countryflags.io/${isoCode}/flat/64.png`} alt='flag' />
         <div className='country-name'>{countryOrRegion}</div>
         <div className='description'>
             <div className='category-container'>

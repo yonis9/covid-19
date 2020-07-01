@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext, useEffect } from 'react';
 import ReactMapGL, { Popup } from 'react-map-gl';
 
-import { AppContext } from '../../providers/app/App.provider';
+import { MapContext } from '../../providers/map/Map.provider';
 import MarkersContainer from '../markers/Markers.container';
 import InfoCard from '../info-card/InfoCard';
 
@@ -22,17 +22,15 @@ function Map() {
   // const [country, setCountry] = useState(null);
   // const [searchResult, setSearchResult] = useState([])
 
-  const { viewport,setViewport, country } = useContext(AppContext)
+  const { viewport,setViewport, country } = useContext(MapContext)
 
 
 
   useEffect(() => {
     const handleResize = () => setViewport({
+        ...viewport,
         width: '100vw',
-        height: '100vh',
-        latitude: 34,
-        longitude: 20,
-        zoom: 1.5
+        height: '100vh'
       });
 
     window.addEventListener('resize', handleResize);
@@ -59,8 +57,7 @@ function Map() {
            longitude={country.location.long}
            closeButton={false}
            dynamicPosition={true}
-           offsetTop={100}
-           offsetLeft={100}
+           offsetTop={250}
            >
                <InfoCard country={country} />
            </Popup>
