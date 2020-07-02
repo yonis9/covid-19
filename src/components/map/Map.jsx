@@ -9,18 +9,6 @@ import InfoCard from '../info-card/InfoCard';
 import './Map.scss';
 
 function Map() {
-  // const [viewport, setViewport] = useState({
-  //   width: '100vw',
-  //   height: '100vh',
-  //   latitude: 34,
-  //   longitude: 20,
-  //   zoom: 1.5
-  // });
-
-  // const [isMenuOpen, setIsMenuOpen] = useState(false)
-  // const [category, setCategory] = useState('totalConfirmedCases')
-  // const [country, setCountry] = useState(null);
-  // const [searchResult, setSearchResult] = useState([])
 
   const { viewport,setViewport, country } = useContext(MapContext)
 

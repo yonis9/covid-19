@@ -1,0 +1,29 @@
+.graph {
+    margin-top: 50px;
+    position: relative;
+    padding: 25px;
+
+    .switch-graph-button {
+        position: absolute;
+        top: 70px;
+        right: 40px;
+        z-index: 4;
+        height: 30px;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: rgb(36, 36, 36);
+        border: 1px solid;
+        border-radius: 3px;
+        font-family: 'Oswald';
+        color: #d6d6d6;
+        font-weight: 400;
+        outline: none;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+            color: rgb(36, 36, 36);
+            background-color: #d6d6d6;
+            transition: 0.3s ease-in-out;
+        }
+    }
+}

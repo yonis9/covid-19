@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 
+import { AppContext } from '../../providers/app/App.provider';
 import { MapContext } from '../../providers/map/Map.provider';
 
 import './Search.scss'
@@ -7,7 +8,8 @@ import './Search.scss'
 const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [searchResults, setSearchResults] = useState([]);
-    const { setViewport, data } = useContext(MapContext);
+    const { data } = useContext(AppContext);
+    const { setViewport } = useContext(MapContext);
 
     const onSearchChange = (event) => {
         const { value } = event.target;

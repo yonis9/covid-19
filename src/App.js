@@ -18,17 +18,17 @@ function App() {
  
   return (
     <div className="App">
-      <MenuProvider>
-        <Hamburger />
-        <Menu />
-      </MenuProvider>
-      {data && 
-      <>
-        <Stats />
-        <History />
-      </>
-      }
       <MapProvider>
+        <MenuProvider>
+          <Hamburger />
+          <Menu />
+        </MenuProvider>
+        {data && 
+        <>
+          <Stats />
+          <History />
+        </>
+        }
         <Map />
       </MapProvider>
     </div>
