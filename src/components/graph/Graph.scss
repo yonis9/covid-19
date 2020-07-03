@@ -1,12 +1,17 @@
 .graph {
-    margin-top: 50px;
+    margin: 50px 2vw;
     position: relative;
-    padding: 25px;
+    width: 76vw;
+
+    @media only screen and (max-width: 600px) {
+        width: 96vw;
+       
+    }
 
     .switch-graph-button {
         position: absolute;
-        top: 70px;
-        right: 40px;
+        top: 60px;
+        right: 20px;
         z-index: 4;
         height: 30px;
         font-size: 14px;

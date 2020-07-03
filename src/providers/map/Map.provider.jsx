@@ -1,4 +1,5 @@
-import React, { createContext,useEffect, useState} from 'react';
+import React, { createContext, useState } from 'react';
+
 
 export const MapContext = createContext({
     viewPort: {
@@ -12,7 +13,6 @@ export const MapContext = createContext({
       country: null,
       setViewport: () =>{},
       setCategory: () => {},
-      setIsMenuOpen: () => {},
       setCountry: () => {}
 })
 
@@ -28,6 +28,8 @@ const MapProvider = ({ children }) => {
 
     const [category, setCategory] = useState('totalConfirmedCases');
     const [country, setCountry] = useState(null);
+
+
 
     return (
         <MapContext.Provider value={{

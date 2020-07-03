@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Marker } from 'react-map-gl';
 
-import Circle from '../circle/Circle';
+import CircleContainer from '../circle/Circle.container';
 
 import './Markers.scss';
 
-const Markers = ({ data, setCountry, category }) => {
+const Markers = ({ data, category }) => {
     const [mappedMarkersData, setMappedData] = useState([])
 
     useEffect(() => {
@@ -50,7 +50,11 @@ const Markers = ({ data, setCountry, category }) => {
                 latitude={lat}
                 longitude={long}
                 >  
-                    <Circle setCountry={setCountry} country={country} size={size} category={category}/>
+                    <CircleContainer 
+                    country={country}
+                    size={size}
+                    category={category}
+                    />
                 </Marker>
             </div>
         )

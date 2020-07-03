@@ -18,7 +18,7 @@ const Menu = () => {
        if (route) {
         setIsMenuOpen(false);
        }
-   }, [route])
+   }, [route, setIsMenuOpen])
 
     return (
         <div className={`menu ${isMenuOpen ? 'open' : ''}`}>

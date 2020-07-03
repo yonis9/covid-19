@@ -7,10 +7,12 @@ import MarkersContainer from '../markers/Markers.container';
 import InfoCard from '../info-card/InfoCard';
 
 import './Map.scss';
+import { AppContext } from '../../providers/app/App.provider';
 
 function Map() {
 
-  const { viewport,setViewport, country } = useContext(MapContext)
+  const { viewport, setViewport, country } = useContext(MapContext);
+  const { route } = useContext(AppContext)
 
 
 
@@ -38,7 +40,7 @@ function Map() {
     >  
     <MarkersContainer />
     {
-       country && (
+       country && !route && (
            <Popup
            className='popup'
            latitude={country.location.lat}
@@ -50,9 +52,9 @@ function Map() {
                <InfoCard country={country} />
            </Popup>
        )
-
        
    } 
+   
     </ReactMapGL>
   );
 }

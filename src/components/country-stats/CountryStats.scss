@@ -1,0 +1,22 @@
+.country-stats {
+    background-color: rgb(36, 36, 36);
+    position: fixed;
+    z-index: 50;
+    width: 80vw;
+    margin-left: 10vw;
+    height: 100vh;
+    border-radius: 5px;
+    transform: translateY(100%);
+    transition: 0.3s ease-in-out;
+
+    &.active {
+    transform: translateY(0);
+    transition: 0.3s ease-in-out;
+    }
+
+    @media only screen and (max-width: 600px) {
+        width: 100vw;
+        margin-left: 0;
+    }
+
+}

@@ -28,7 +28,7 @@ import './History.scss';
 
 const History = () => {
     const { data: {stats: { history } }, route } = useContext(AppContext); 
-
+    console.log('hitory render')
     return (
         <div className={`history ${route === 'history' && 'active'}`}>
             <CloseButton />

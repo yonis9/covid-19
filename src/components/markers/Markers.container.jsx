@@ -5,13 +5,12 @@ import { AppContext } from '../../providers/app/App.provider';
 import Markers from'./Markers';
 
 const MarkersContainer = () => {
-    const { setCountry, category } = useContext(MapContext);
+    const { category } = useContext(MapContext);
     const { data } = useContext(AppContext);
 
     return (
         <Markers
          data={data}
-         setCountry={setCountry}
          category={category}
         />
     )

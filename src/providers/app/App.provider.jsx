@@ -28,7 +28,7 @@ const AppProvider = ({ children }) => {
         }
         fetchData()
     }, [])
-
+    console.log(route)
     return (
         <AppContext.Provider value={{route, setRoute, data}}>
             {children}

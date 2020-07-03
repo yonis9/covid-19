@@ -30,7 +30,7 @@ const Search = () => {
         setViewport({
             width: '100vw',
             height: '100vh',
-            zoom: 3,
+            zoom: 4,
             latitude,
             longitude
         })
