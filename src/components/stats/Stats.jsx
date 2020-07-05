@@ -58,4 +58,4 @@ console.log('statssss')
     )
 }
 
-export default Stats;
+export default React.memo(Stats);

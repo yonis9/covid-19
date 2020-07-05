@@ -29,7 +29,7 @@ const MapProvider = ({ children }) => {
     const [category, setCategory] = useState('totalConfirmedCases');
     const [country, setCountry] = useState(null);
 
-
+      console.log(country)
 
     return (
         <MapContext.Provider value={{

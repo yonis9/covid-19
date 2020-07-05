@@ -1,34 +1,16 @@
 import React, { createContext, useState, useEffect } from 'react';
+import useFetch from '../../hooks/useFetch';
 
 export const AppContext = createContext({
     route: '',
     setRoute: () => {},
-    data: null,
-    setDate: () => {}
+    data: null
 })
 
 const AppProvider = ({ children }) => {
     const [route, setRoute] = useState('');
-    const [data, setData] = useState(null);
+    const data = useFetch('https://api.smartable.ai/coronavirus/stats/global');
 
-
-    useEffect(() => {
-        console.log('fetch')
-        const fetchData = async() => {
-            const requestOptions = {
-                headers: {
-                    'Subscription-Key': process.env.REACT_APP_KEY
-                }
-            };
-            
-            const response = await fetch("https://api.smartable.ai/coronavirus/stats/global", requestOptions);
-            const result = await response.json();
-            console.log(result)
-            setData(result);
-        }
-        fetchData()
-    }, [])
-    console.log(route)
     return (
         <AppContext.Provider value={{route, setRoute, data}}>
             {children}
