@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { AppContext } from '../../providers/app/App.provider';
 import { MapContext } from '../../providers/map/Map.provider';
+import { MenuContext } from '../../providers/menu/Menu.provider';
 
 import './Search.scss'
 
@@ -10,6 +11,7 @@ const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
     const { data } = useContext(AppContext);
     const { setViewport } = useContext(MapContext);
+    const { setIsMenuOpen } = useContext(MenuContext);
 
     const onSearchChange = (event) => {
         const { value } = event.target;
@@ -36,6 +38,8 @@ const Search = () => {
         })
         setSearchField('');
         setSearchResults([]);
+        setIsMenuOpen(false);
+        
     }
 
     return (

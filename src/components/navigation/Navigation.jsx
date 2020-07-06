@@ -10,7 +10,7 @@ const Navigation = () => {
         <ul className='navigation'>
             <li onClick={() => setRoute('stats')}>Stats</li>
             <li onClick={() => setRoute('history')}>History</li>
-            <li>Stay Safe</li>
+            <li onClick={()=> setRoute('stay-safe')}>Stay Safe</li>
         </ul>
     )
 }

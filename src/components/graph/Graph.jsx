@@ -1,14 +1,9 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 
 import  CanvasJSReact from '../../assets/canvasjs.react';
 
-
-import { AppContext } from '../../providers/app/App.provider';
-import CloseButton from '../close-button/CloseButton';
-
 import './Graph.scss';
 
-const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 

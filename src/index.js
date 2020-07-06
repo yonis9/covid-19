@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import AppProvider from './providers/app/App.provider';
 import MapProvider from './providers/map/Map.provider';
+import MenuProvider from './providers/menu/Menu.provider';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <React.StrictMode>
       <AppProvider>
         <MapProvider>
-          <App />
+          <MenuProvider>
+            <App />
+          </MenuProvider>
         </MapProvider>
      </AppProvider>
     </React.StrictMode>,

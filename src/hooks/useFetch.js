@@ -1,13 +1,11 @@
-import React , { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 
 const useFetch = (url, route, target) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        console.log('usefetch', url)
         let mounted = true;
         const fetchData = async() => {
-            console.log('fetching....')
             const requestOptions = {
                 headers: {
                     'Subscription-Key': process.env.REACT_APP_KEY
@@ -20,7 +18,6 @@ const useFetch = (url, route, target) => {
                 setData(result);
             }
         }
-        console.log(target === route)
         if (!target || target === route) {
             fetchData()
         }

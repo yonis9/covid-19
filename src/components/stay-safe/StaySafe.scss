@@ -1,0 +1,18 @@
+.stay-safe {
+    ul {
+        text-align: left;
+        li {
+            &:nth-child(even) {
+                color: #6dc8d6;
+            }
+        }
+    }
+
+    p {
+        padding: 50px;
+        &:last-child{
+            margin-top: 100px;
+            color: #6dc8d6
+        }
+    }
+}
