@@ -43,10 +43,6 @@
                 border-bottom: solid 2px;  
                 transform: scaleX(0);  
                 transition: transform 250ms ease-in-out;
-
-                &.open {
-                    transform: scaleX(1);
-                }
             }
 
             &.open:after {

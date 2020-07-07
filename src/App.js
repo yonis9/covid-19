@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+
 import { MapContext } from './providers/map/Map.provider';
 
 import CountryStats from './components/country-stats/CountryStats';
@@ -15,14 +16,16 @@ import { AppContext } from './providers/app/App.provider';
 import './App.css';
 
 function App() {
-  const { data } = useContext(AppContext)
-  const { country } = useContext(MapContext)
+  const { data } = useContext(AppContext);
+  const { country } = useContext(MapContext);
+
+
 
   return (
     <div className="App">
       <Hamburger />
       <Menu />
-      {/* {
+      {
       data && 
       <>
         <Stats />
@@ -30,7 +33,7 @@ function App() {
       </>
       }
       <StaySafe />
-      { country && <CountryStats country={country} />} */}
+      { country && <CountryStats country={country} />}
       <Map />
     </div>
   );

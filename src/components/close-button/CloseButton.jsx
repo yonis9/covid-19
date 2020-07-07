@@ -1,16 +1,24 @@
 import React, { useContext } from 'react';
 
 import { AppContext } from '../../providers/app/App.provider';
+import { MapContext } from '../../providers/map/Map.provider';
 
 import './CloseButton.scss';
 
-const CloseButton = () => {
+const CloseButton = ({ trigger }) => {
     const { setRoute } = useContext(AppContext);
+    const { setCountry } = useContext(MapContext);
 
+    const onButtonClick = () => {
+        setRoute('');
+        if (trigger === 'country') {
+            setTimeout(() => setCountry(null), 500)
+        }
+    }
     return (
         <div 
         className='close-button' 
-        onClick={() => setRoute('')}
+        onClick={onButtonClick}
         >X</div>
     )
 }

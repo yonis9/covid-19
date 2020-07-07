@@ -16,7 +16,7 @@ const CountryStats = ({ country }) => {
    
     return (
         <div className={`country-stats ${route === 'country' && 'active'}`}>
-            <CloseButton isCountry={true}/>
+            <CloseButton trigger='country'/>
             <h2>{country.location.countryOrRegion}</h2>
             <img src={`https://www.countryflags.io/${country.location.isoCode}/flat/64.png`} alt='flag' />
             <StatsGrid stats={country}/>
