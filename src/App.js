@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 
-
 import { MapContext } from './providers/map/Map.provider';
 
 import CountryStats from './components/country-stats/CountryStats';
@@ -19,7 +18,7 @@ function App() {
   const { data } = useContext(AppContext);
   const { country } = useContext(MapContext);
 
-
+console.log(country)
 
   return (
     <div className="App">

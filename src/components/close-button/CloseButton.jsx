@@ -12,7 +12,7 @@ const CloseButton = ({ trigger }) => {
     const onButtonClick = () => {
         setRoute('');
         if (trigger === 'country') {
-            setTimeout(() => setCountry(null), 500)
+            setTimeout(() => setCountry(null), 300)
         }
     }
     return (

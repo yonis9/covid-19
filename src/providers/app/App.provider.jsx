@@ -11,6 +11,8 @@ const AppProvider = ({ children }) => {
     const [route, setRoute] = useState('');
     const data = useFetch('https://api.smartable.ai/coronavirus/stats/global');
 
+    console.log(data)
+
     return (
         <AppContext.Provider value={{route, setRoute, data}}>
             {children}
