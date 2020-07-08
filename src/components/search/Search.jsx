@@ -1,4 +1,7 @@
 import React, { useContext, useState } from 'react';
+import { FlyToInterpolator } from 'react-map-gl';
+import * as d3 from 'd3-ease';
+
 
 import { AppContext } from '../../providers/app/App.provider';
 import { MapContext } from '../../providers/map/Map.provider';
@@ -10,7 +13,7 @@ const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [searchResults, setSearchResults] = useState([]);
     const { data } = useContext(AppContext);
-    const { setViewport } = useContext(MapContext);
+    const { setViewport, viewPort } = useContext(MapContext);
     const { setIsMenuOpen } = useContext(MenuContext);
 
     const onSearchChange = (event) => {
@@ -30,11 +33,13 @@ const Search = () => {
 
     const onCountryClick = (latitude, longitude) => {
         setViewport({
-            width: '100vw',
-            height: '100vh',
-            zoom: 4,
+            ...viewPort,
             latitude,
-            longitude
+            longitude,
+            zoom: 4,
+            transitionDuration: 2000,
+            transitionInterpolator: new FlyToInterpolator(),
+            transitionEasing: d3.easeCubic 
         })
         setSearchField('');
         setSearchResults([]);

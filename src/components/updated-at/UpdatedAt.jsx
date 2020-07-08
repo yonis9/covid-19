@@ -3,7 +3,7 @@ import React from 'react';
 import './UpdatedAt.scss'
 
 const UpdatedAt = ({ date }) => {
-
+    
     const convertDate = (date) => {
         const numericDate = new Date(date);
         const now = Date.now();
@@ -22,7 +22,7 @@ const UpdatedAt = ({ date }) => {
     }
 
     return (
-        <p className='updated-at'>Updated At: {date && convertDate(date)}</p>
+        <p className='updated-at'>Updated {date && convertDate(date)}</p>
     )
 
 }

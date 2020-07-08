@@ -30,6 +30,7 @@ const Graph = ({ title, color, pointer, history }) => {
         backgroundColor: '#242424',
         theme: "dark1",
         animationEnabled: true,
+        zoomEnabled: true,
         title: {
             text: `${isScaleTotal ? 'Total': 'Daily'} ${title}`,
             ...fontOptions

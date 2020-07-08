@@ -16,7 +16,7 @@ const Markers = ({ data, category }) => {
 
     const mapData = (data, query) => {
         const filteredData = data.stats.breakdowns.filter(el => el[query] > 0);
-        const countedQueries = filteredData.map(el => el[query])
+        const countedQueries = filteredData.map(el => el[query]);
 
         const min = Math.min(...countedQueries);
         const max = Math.max(...countedQueries);

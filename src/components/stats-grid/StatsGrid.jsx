@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext }  from 'react';
+
+import { AppContext } from '../../providers/app/App.provider';
+
+import Pie from '../pie/Pie';
 
 import './StatsGrid.scss';
 
 const StatsGrid = ({ stats }) => {
+    const { route } = useContext(AppContext);
     const {
         newDeaths,
         newlyConfirmedCases,
@@ -22,7 +27,15 @@ const StatsGrid = ({ stats }) => {
         return numberArray.join('')
     }
 
+    const mappedBreakdowns = stats.breakdowns ? stats.breakdowns.map(country => {
+            const { totalConfirmedCases, totalDeaths, totalRecoveredCases } = country;
+            country['activeCases'] = totalConfirmedCases-totalRecoveredCases-totalDeaths;
+            return country;
+            }) : null
+    
+
     return (
+        <>
         <div className='stats-grid'>
             <div className='stat-field'>
                 <div className='stat-name'>Total Confirmed Cases</div>
@@ -58,10 +71,34 @@ const StatsGrid = ({ stats }) => {
             </div>
             <div className='stat-field'>
                 <div className='stat-name'>Active Cases</div>
-                <div className='stat-value'>{addCommas(totalConfirmedCases-totalRecoveredCases)}</div>
+                <div className='stat-value'>{addCommas(totalConfirmedCases-totalRecoveredCases-totalDeaths)}</div>
             </div>
         </div>
+        {
+            route === 'stats' && 
+            <>
+                <Pie 
+                breakdowns={mappedBreakdowns}
+                title='Total Confrimed Cases'
+                total={totalConfirmedCases}
+                query='totalConfirmedCases'
+                />
+                <Pie 
+                breakdowns={mappedBreakdowns}
+                title='Active Cases'
+                total={totalConfirmedCases-totalDeaths-totalRecoveredCases}
+                query='activeCases'
+                />
+                <Pie 
+                breakdowns={mappedBreakdowns}
+                title='Total Deaths'
+                total={totalDeaths}
+                query='totalDeaths'
+                />
+            </>
+        }
+        </>
     )
 } 
 
-export default StatsGrid;
+export default React.memo(StatsGrid);

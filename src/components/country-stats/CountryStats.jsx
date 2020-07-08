@@ -4,6 +4,7 @@ import useFetch from '../../hooks/useFetch';
 import { AppContext } from '../../providers/app/App.provider';
 
 import CloseButton from '../close-button/CloseButton';
+import Spinner from '../spinner/Spinner';
 import GraphList from '../graph-list/GraphList';
 import StatsGrid from '../stats-grid/StatsGrid';
 import UpdatedAt from '../updated-at/UpdatedAt';
@@ -18,12 +19,17 @@ const CountryStats = ({ country }) => {
     return (
         <div className={`country-stats ${route === 'country' && 'active'}`}>
             <CloseButton trigger='country'/>
-            {data && <UpdatedAt date={data.updatedDateTime}/>}
-            <h2>{country.location.countryOrRegion}</h2>
-            <img src={`https://www.countryflags.io/${country.location.isoCode}/flat/64.png`} alt='flag' />
-            <StatsGrid stats={country}/>
+            {console.log(country)}
             {
-                data && <GraphList history={data.stats.history}/>
+                !data ?
+                <Spinner /> :
+                <>
+                    <UpdatedAt date={data.updatedDateTime}/>
+                    <h2>{country.location.countryOrRegion}</h2>
+                    <img src={`https://www.countryflags.io/${country.location.isoCode}/flat/64.png`} alt='flag' />
+                    <StatsGrid stats={country}/>
+                    <GraphList history={data.stats.history}/>
+                </>
             }
         </div>
     )

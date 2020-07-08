@@ -9,31 +9,24 @@ import Map from './components/map/Map';
 import Stats from './components/stats/Stats';
 import History from './components/history/History';
 import StaySafe from './components/stay-safe/StaySafe';
-
-import { AppContext } from './providers/app/App.provider';
+import ErrorBoundary from './ErrorBoundary';
 
 import './App.css';
 
 function App() {
-  const { data } = useContext(AppContext);
   const { country } = useContext(MapContext);
-
-console.log(country)
 
   return (
     <div className="App">
-      <Hamburger />
-      <Menu />
-      {
-      data && 
-      <>
-        <Stats />
-        <History />
-      </>
-      }
-      <StaySafe />
-      { country && <CountryStats country={country} />}
-      <Map />
+      <ErrorBoundary>
+        <Hamburger />
+        <Menu />
+          <Stats />
+          <History />
+        <StaySafe />
+        { country && <CountryStats country={country} />}
+        <Map />
+      </ErrorBoundary>
     </div>
   );
 }
