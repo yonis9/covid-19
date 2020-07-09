@@ -8,7 +8,6 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Pie = ({ breakdowns, query, total, title }) => {
     console.log('render pie')
-
     const [dataPoints, setDataPoints] = useState([]);
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const Pie = ({ breakdowns, query, total, title }) => {
         )});
         mappedTopCountries.push({ name: 'Rest Of The World', y: (total-totalTopCountries)/total*100 })
         setDataPoints(mappedTopCountries);
-    }, [breakdowns, query])
+    }, [breakdowns, query, total])
 
 
     const options = {

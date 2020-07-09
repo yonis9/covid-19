@@ -6,13 +6,14 @@ import CloseButton from '../close-button/CloseButton';
 import Spinner from '../spinner/Spinner';
 import StatsGrid from '../stats-grid/StatsGrid';
 import UpdatedAt from '../updated-at/UpdatedAt';
+import PieList from '../pie-list/PieList';
 
 
 import './Stats.scss';
 
 const Stats = () => {
     const { route, data } = useContext(AppContext);
-    console.log(data)
+    console.log('render stats')
 
 
     return (
@@ -24,7 +25,7 @@ const Stats = () => {
                 <>
                     <UpdatedAt date={data.updatedDateTime}/>
                     <StatsGrid stats={data.stats}/>
-                    
+                    <PieList stats={data.stats} />
                 </>
             }
         </div>

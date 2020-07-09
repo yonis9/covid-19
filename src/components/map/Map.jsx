@@ -17,11 +17,12 @@ function Map() {
 
 
   useEffect(() => {
-    const handleResize = () => setViewport({
+    const handleResize = () => {
+      setViewport({
         ...viewport,
         width: '100vw',
         height: '100vh'
-      });
+      })};
 
     window.addEventListener('resize', handleResize);
     return () => {

@@ -14,6 +14,17 @@ const useFetch = (url, route, target) => {
             
             const response = await fetch(url, requestOptions);
             const result = await response.json();
+
+            const addActiveCases = (object) => {
+                const { totalConfirmedCases, totalRecoveredCases, totalDeaths } = object;
+                object['activeCases'] = totalConfirmedCases-totalRecoveredCases-totalDeaths;
+            } 
+            if (!target) {
+                result.stats.breakdowns.forEach(country => addActiveCases(country))
+            }
+            
+            addActiveCases(result.stats);
+
             if (mounted) {
                 setData(result);
             }
@@ -26,8 +37,7 @@ const useFetch = (url, route, target) => {
             mounted = false;
         }
     }, [url, route, target])
-
-
+    
     return data;
 }
 

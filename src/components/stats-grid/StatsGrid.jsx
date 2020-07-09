@@ -1,41 +1,32 @@
-import React, { useContext }  from 'react';
-
-import { AppContext } from '../../providers/app/App.provider';
-
-import Pie from '../pie/Pie';
+import React from 'react';
 
 import './StatsGrid.scss';
 
 const StatsGrid = ({ stats }) => {
-    const { route } = useContext(AppContext);
     const {
         newDeaths,
         newlyConfirmedCases,
         newlyRecoveredCases,
         totalConfirmedCases,
         totalDeaths,
-        totalRecoveredCases
+        totalRecoveredCases,
+        activeCases
     } = stats;
 
     const addCommas = number => {
-        const numberArray = number.toString().split('');
-        let count = 1;
-        for (let i=numberArray.length-1; i>0; i--) {
-            if (count%3 === 0) numberArray[i] = `,${numberArray[i]}`;
-            count++;
+        if (number) {
+            const numberArray = number.toString().split('');
+            let count = 1;
+            for (let i=numberArray.length-1; i>0; i--) {
+                if (count%3 === 0) numberArray[i] = `,${numberArray[i]}`;
+                count++;
+            }
+            return numberArray.join('')
         }
-        return numberArray.join('')
+       
     }
 
-    const mappedBreakdowns = stats.breakdowns ? stats.breakdowns.map(country => {
-            const { totalConfirmedCases, totalDeaths, totalRecoveredCases } = country;
-            country['activeCases'] = totalConfirmedCases-totalRecoveredCases-totalDeaths;
-            return country;
-            }) : null
-    
-
     return (
-        <>
         <div className='stats-grid'>
             <div className='stat-field'>
                 <div className='stat-name'>Total Confirmed Cases</div>
@@ -71,33 +62,9 @@ const StatsGrid = ({ stats }) => {
             </div>
             <div className='stat-field'>
                 <div className='stat-name'>Active Cases</div>
-                <div className='stat-value'>{addCommas(totalConfirmedCases-totalRecoveredCases-totalDeaths)}</div>
+                <div className='stat-value'>{addCommas(activeCases)}</div>
             </div>
         </div>
-        {
-            route === 'stats' && 
-            <>
-                <Pie 
-                breakdowns={mappedBreakdowns}
-                title='Total Confrimed Cases'
-                total={totalConfirmedCases}
-                query='totalConfirmedCases'
-                />
-                <Pie 
-                breakdowns={mappedBreakdowns}
-                title='Active Cases'
-                total={totalConfirmedCases-totalDeaths-totalRecoveredCases}
-                query='activeCases'
-                />
-                <Pie 
-                breakdowns={mappedBreakdowns}
-                title='Total Deaths'
-                total={totalDeaths}
-                query='totalDeaths'
-                />
-            </>
-        }
-        </>
     )
 } 
 

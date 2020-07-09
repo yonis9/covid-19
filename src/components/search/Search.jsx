@@ -12,7 +12,7 @@ import './Search.scss'
 const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [searchResults, setSearchResults] = useState([]);
-    const { data } = useContext(AppContext);
+    const { data, setRoute } = useContext(AppContext);
     const { setViewport, viewPort } = useContext(MapContext);
     const { setIsMenuOpen } = useContext(MenuContext);
 
@@ -43,8 +43,9 @@ const Search = () => {
         })
         setSearchField('');
         setSearchResults([]);
+        setRoute('');
         setIsMenuOpen(false);
-        
+
     }
 
     return (

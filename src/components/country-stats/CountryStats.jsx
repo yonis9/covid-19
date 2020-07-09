@@ -19,7 +19,6 @@ const CountryStats = ({ country }) => {
     return (
         <div className={`country-stats ${route === 'country' && 'active'}`}>
             <CloseButton trigger='country'/>
-            {console.log(country)}
             {
                 !data ?
                 <Spinner /> :
