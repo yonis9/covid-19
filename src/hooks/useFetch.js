@@ -4,31 +4,38 @@ const useFetch = (url, route, target) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
+        const addActiveCases = (object) => {
+            const { totalConfirmedCases, totalRecoveredCases, totalDeaths } = object;
+            object['activeCases'] = totalConfirmedCases-totalRecoveredCases-totalDeaths;
+        } 
         let mounted = true;
+        
         const fetchData = async() => {
-            const requestOptions = {
-                headers: {
-                    'Subscription-Key': process.env.REACT_APP_KEY
+            try {
+                const requestOptions = {
+                    headers: {
+                        'Subscription-Key': process.env.REACT_APP_KEY
+                    }
+                };
+                
+                const response = await fetch(url, requestOptions);
+                const result = await response.json();
+    
+                if (!target) {
+                    result.stats.breakdowns.forEach(country => addActiveCases(country))
                 }
-            };
-            
-            const response = await fetch(url, requestOptions);
-            const result = await response.json();
+                
+                addActiveCases(result.stats);
+    
+                if (mounted) {
+                    setData(result);
+                }   
 
-            const addActiveCases = (object) => {
-                const { totalConfirmedCases, totalRecoveredCases, totalDeaths } = object;
-                object['activeCases'] = totalConfirmedCases-totalRecoveredCases-totalDeaths;
-            } 
-            if (!target) {
-                result.stats.breakdowns.forEach(country => addActiveCases(country))
-            }
-            
-            addActiveCases(result.stats);
-
-            if (mounted) {
-                setData(result);
+            } catch (error){
+                console.log(error)
             }
         }
+
         if (!target || target === route) {
             fetchData()
         }

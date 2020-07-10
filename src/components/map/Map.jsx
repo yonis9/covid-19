@@ -37,7 +37,11 @@ function Map() {
       {...viewport}
       mapStyle='mapbox://styles/mapbox/dark-v10'
       mapboxApiAccessToken={process.env.REACT_APP_TOKEN}
-      onViewportChange={nextViewport => setViewport(nextViewport)}
+      onViewportChange={nextViewport => setViewport({
+        ...nextViewport,
+        width: '100vw',
+        height: '100vh'
+      })}
     >  
     <MarkersContainer />
     {

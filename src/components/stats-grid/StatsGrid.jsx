@@ -14,7 +14,6 @@ const StatsGrid = ({ stats }) => {
     } = stats;
 
     const addCommas = number => {
-        if (number) {
             const numberArray = number.toString().split('');
             let count = 1;
             for (let i=numberArray.length-1; i>0; i--) {
@@ -22,8 +21,6 @@ const StatsGrid = ({ stats }) => {
                 count++;
             }
             return numberArray.join('')
-        }
-       
     }
 
     return (

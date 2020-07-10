@@ -25,7 +25,7 @@ const Pie = ({ breakdowns, query, total, title }) => {
         )});
         mappedTopCountries.push({ name: 'Rest Of The World', y: (total-totalTopCountries)/total*100 })
         setDataPoints(mappedTopCountries);
-    }, [breakdowns, query, total])
+    }, [breakdowns, query, total]);
 
 
     const options = {
@@ -37,7 +37,8 @@ const Pie = ({ breakdowns, query, total, title }) => {
             text: title,
             verticalAlign: "center",
             fontSize: 24,
-            dockInsidePlotArea: false
+            maxWidth: 150,
+            dockInsidePlotArea: false,
         }],
         data: [{
             type: "doughnut",
@@ -51,7 +52,7 @@ const Pie = ({ breakdowns, query, total, title }) => {
     }
     return (
     <div className='pie'>
-        <CanvasJSChart options = {options}
+        <CanvasJSChart options={options}
             /* onRef={ref => this.chart = ref} */
         />
     </div>

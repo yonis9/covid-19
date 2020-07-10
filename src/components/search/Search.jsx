@@ -45,7 +45,7 @@ const Search = () => {
         setSearchResults([]);
         setRoute('');
         setIsMenuOpen(false);
-
+    
     }
 
     return (
