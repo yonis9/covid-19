@@ -2,6 +2,7 @@ import  { useState, useEffect } from 'react';
 
 const useFetch = (url, route, target) => {
     const [data, setData] = useState(null);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const addActiveCases = (object) => {
@@ -32,7 +33,8 @@ const useFetch = (url, route, target) => {
                 }   
 
             } catch (error){
-                console.log(error)
+                console.log(error);
+                setError(true);
             }
         }
 
@@ -45,7 +47,7 @@ const useFetch = (url, route, target) => {
         }
     }, [url, route, target])
     
-    return data;
+    return { data, error };
 }
 
 

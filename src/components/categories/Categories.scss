@@ -1,3 +1,6 @@
+@import '../../variables';
+
+
 .categories-container {
     margin-top: 50px;
     text-align: center;
@@ -14,15 +17,15 @@
         justify-content: center;
 
         :nth-child(1) {
-            color: #ef8828
+            color: $confirmedColor;
         }
 
         :nth-child(2) {
-            color: #ed2842
+            color: $deathsColor;
         }
 
         :nth-child(3) {
-            color: #28ef64
+            color: $recoveredColor;
         }
 
         button {

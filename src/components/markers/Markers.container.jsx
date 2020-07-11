@@ -6,11 +6,12 @@ import Markers from'./Markers';
 
 const MarkersContainer = () => {
     const { category } = useContext(MapContext);
-    const { data } = useContext(AppContext);
+    const { data, error } = useContext(AppContext);
 
     return (
         <Markers
          data={data}
+         error={error}
          category={category}
         />
     )

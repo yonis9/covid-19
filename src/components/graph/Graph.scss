@@ -10,7 +10,7 @@
 
     .switch-graph-button {
         position: absolute;
-        top: 60px;
+        top: 25px;
         right: 20px;
         z-index: 4;
         height: 30px;
@@ -24,6 +24,12 @@
         font-weight: 400;
         outline: none;
         transition: 0.3s ease-in-out;
+
+        @media only screen and (max-width: 600px) {
+            top: 30px;
+            height: 20px;
+            font-size: 10px;
+        }
 
         &:hover {
             color: rgb(36, 36, 36);

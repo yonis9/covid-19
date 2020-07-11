@@ -1,26 +1,5 @@
+@import '../../mixins.scss';
+
 .history {
-    overflow-Y: scroll;
-    overflow-X: hidden;
-
-    &::-webkit-scrollbar {
-        width: 8px;
-      }
-      
-      /* Track */
-      &::-webkit-scrollbar-track {
-        border-radius: 5px;
-        background: #3f3f3f; 
-      }
-       
-      /* Handle */
-      &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background: #888; 
-      }
-      
-      /* Handle on hover */
-      &::-webkit-scrollbar-thumb:hover {
-        background: #666; 
-      }
-
+  @include page;
 }

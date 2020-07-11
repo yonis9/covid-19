@@ -1,4 +1,8 @@
+@import '../../mixins.scss';
+
 .stay-safe {
+
+  @include page;
     
     ul {
        padding: 0 80px;

@@ -12,21 +12,23 @@ import './Search.scss'
 const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [searchResults, setSearchResults] = useState([]);
-    const { data, setRoute } = useContext(AppContext);
+    const { data, error, setRoute } = useContext(AppContext);
     const { setViewport, viewPort } = useContext(MapContext);
     const { setIsMenuOpen } = useContext(MenuContext);
 
     const onSearchChange = (event) => {
-        const { value } = event.target;
-        setSearchField(value)
-        if (!value) {
-           setSearchResults([]) 
-        } else {
-            setSearchResults(
-                data.stats.breakdowns.filter( e => 
-                    e.location.countryOrRegion.toLowerCase().includes(value.toLowerCase())
-                    )
-            )
+        if (!error) {
+            const { value } = event.target;
+            setSearchField(value)
+            if (!value) {
+               setSearchResults([]) 
+            } else {
+                setSearchResults(
+                    data.stats.breakdowns.filter( e => 
+                        e.location.countryOrRegion.toLowerCase().includes(value.toLowerCase())
+                        )
+                )
+            }
         }
      }
 
@@ -57,7 +59,8 @@ const Search = () => {
             onChange={onSearchChange}
             />
             <div className='search-results'>
-                {
+                {   
+                    error ? <div>Sorry, we are not able to get that data</div> :
                     searchResults.map(result => 
                     <div 
                     className='result'

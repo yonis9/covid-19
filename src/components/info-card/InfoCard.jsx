@@ -3,6 +3,7 @@ import React from 'react';
 import './InfoCard.scss'
 
 const InfoCard = ({ country }) => {
+    console.log(country)
     const { 
         location: { countryOrRegion,isoCode },
         newDeaths,

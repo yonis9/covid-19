@@ -1,45 +1,5 @@
-.stats-container, .stay-safe, .history {
-    background-color: rgb(36, 36, 36);
-    position: fixed;
-    z-index: 3;
-    width: 80vw;
-    margin-left: 10vw;
-    height: 100vh;
-    border-radius: 5px;
-    transform: translateY(100%);
-    transition: 0.3s ease-in-out;
+@import '../../mixins.scss';
 
-    overflow-Y: scroll;
-    overflow-X: hidden;
-
-    &::-webkit-scrollbar {
-        width: 8px;
-      }
-      
-      /* Track */
-      &::-webkit-scrollbar-track {
-        border-radius: 5px;
-        background: #3f3f3f; 
-      }
-       
-      /* Handle */
-      &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background: #888; 
-      }
-      
-      /* Handle on hover */
-      &::-webkit-scrollbar-thumb:hover {
-        background: #666; 
-      }
-      
-    &.active {
-    transform: translateY(0);
-    transition: 0.3s ease-in-out;
-    }
-
-    @media only screen and (max-width: 600px) {
-        width: 100vw;
-        margin-left: 0;
-    }
+.stats-container {
+  @include page;
 }

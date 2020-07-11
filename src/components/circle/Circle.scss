@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .circle {
     
    cursor: pointer;
@@ -6,16 +8,16 @@
 }
 
 .totalConfirmedCases {
-    fill: rgba($color: #ef8828, $alpha: 0.1);
-    stroke: rgba($color: #ef8828, $alpha: 0.3);
+    fill: rgba($color: $confirmedColor, $alpha: 0.1);
+    stroke: rgba($color: $confirmedColor, $alpha: 0.3);
 }
 
 .totalDeaths{
-    fill: rgba($color: #ed2842, $alpha: 0.1);
-    stroke: rgba($color: #ed2842, $alpha: 0.3);
+    fill: rgba($color: $deathsColor, $alpha: 0.1);
+    stroke: rgba($color: $deathsColor, $alpha: 0.3);
 }
 
 .totalRecoveredCases {
-    fill: rgba($color: #28ef64, $alpha: 0.1);
-    stroke: rgba($color: #28ef64, $alpha: 0.3);
+    fill: rgba($color: $recoveredColor, $alpha: 0.1);
+    stroke: rgba($color: $recoveredColor, $alpha: 0.3);
 }

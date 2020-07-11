@@ -5,14 +5,17 @@ import CircleContainer from '../circle/Circle.container';
 
 import './Markers.scss';
 
-const Markers = ({ data, category }) => {
+const Markers = ({ data, error, category }) => {
     const [mappedMarkersData, setMappedData] = useState([])
 
     useEffect(() => {
-        if(data) {
+        if (error) {
+            alert('Sorry, we are not able to get that data')
+        }
+        else if (data) {
             setMappedData(mapData(data, category));
         }
-    }, [data, category, setMappedData])
+    }, [data, category, setMappedData, error])
 
     const mapData = (data, query) => {
         const filteredData = data.stats.breakdowns.filter(el => el[query] > 0);
