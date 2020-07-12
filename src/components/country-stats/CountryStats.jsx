@@ -15,7 +15,7 @@ const CountryStats = ({ country }) => {
     console.log('render country stats')
     const { route } = useContext(AppContext);
     const { data, error } = useFetch(`https://api.smartable.ai/coronavirus/stats/${country.location.isoCode}`, route, 'country')
-    console.log(data)
+
     return (
         <div className={`country-stats ${route === 'country' && 'active'}`}>
             <CloseButton trigger='country'/>

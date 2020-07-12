@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import { AppContext } from '../../providers/app/App.provider';
 import { MenuContext } from '../../providers/menu/Menu.provider';
@@ -25,7 +27,12 @@ const Menu = () => {
             <Categories />
             <Search />
             <Navigation />
-            <p className='footer'>Made by Yoni Sisso</p>
+            <div className='footer'>
+                <p>Made by Yoni Sisso </p>
+                <a href='https://github.com/yonis9' target='_blank' rel="noopener noreferrer">
+                    <FontAwesomeIcon className='icon' icon={faGithub} size='2x'/>
+                </a>
+            </div>
         </div>
     )
 }

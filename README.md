@@ -1,3 +1,11 @@
+## Covid-19 App
+
+<img src='src/assets/covid19.png' alt='screenshot'>
+
+An app that show Covid-19 data stats visullay, using React, Context API, SASS and some other 3rd party libaries.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
