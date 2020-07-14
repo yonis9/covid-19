@@ -21,12 +21,14 @@ const Markers = ({ data, error, category }) => {
         const filteredData = data.stats.breakdowns.filter(el => el[query] > 0);
         const countedQueries = filteredData.map(el => el[query]);
 
-        const min = Math.min(...countedQueries);
-        const max = Math.max(...countedQueries);
+        const { min, max } = countedQueries.reduce((acc, queryCount) => ({
+                min: Math.min(queryCount, acc.min),
+                max: Math.max(queryCount, acc.max)
+        }), { min:  Number.MAX_SAFE_INTEGER, max: Number.MIN_SAFE_INTEGER })
+        
         const diff = max-min;
 
         return filteredData.map(el => {
-            
             el.size = el[query] > 0.6 * diff ? 160 :
                       el[query] > 0.2 * diff ? 120 :
                       el[query] > 0.1 * diff ? 100 :
@@ -36,11 +38,10 @@ const Markers = ({ data, error, category }) => {
         })
     }
 
-    console.log('render markers')
     return !!mappedMarkersData.length && 
     mappedMarkersData.filter(({ location: { lat, long }}) => lat && long)
     .map(country => {
-        const { location: { lat, long, countryOrRegion }, size } = country;
+        const { location: { lat, long, countryOrRegion } } = country;
 
         return (
             <div 
@@ -53,7 +54,6 @@ const Markers = ({ data, error, category }) => {
                 >  
                     <CircleContainer 
                     country={country}
-                    size={size}
                     category={category}
                     />
                 </Marker>

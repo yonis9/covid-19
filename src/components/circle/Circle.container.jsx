@@ -4,7 +4,7 @@ import Circle from './Circle';
 import { AppContext } from '../../providers/app/App.provider';
 import { MapContext } from '../../providers/map/Map.provider';
 
-const CircleContainer = ({ country, size, category }) => {
+const CircleContainer = ({ country, category }) => {
     const { setRoute, route} = useContext(AppContext)
     const { setCountry } = useContext(MapContext);
 
@@ -14,11 +14,9 @@ const CircleContainer = ({ country, size, category }) => {
         }
     }
 
-
     return (
         <Circle
         country={country}
-        size={size}
         category={category}
         route={route}
         setRoute={setRoute}

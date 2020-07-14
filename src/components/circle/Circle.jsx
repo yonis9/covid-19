@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Circle.scss';
 
-const Circle = ({ size, category, country, setRoute, handleCountryChange }) => {
-    
+const Circle = ({ category, country, setRoute, handleCountryChange }) => {
+    const { size } = country;
     const onCircleClick = () => {
         setRoute('country');
         handleCountryChange(country);

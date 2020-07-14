@@ -1,20 +1,15 @@
 import React from 'react';
 import { useContext, useEffect } from 'react';
-import ReactMapGL, { Popup } from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 
 import { MapContext } from '../../providers/map/Map.provider';
 import MarkersContainer from '../markers/Markers.container';
 import InfoCard from '../info-card/InfoCard';
 
 import './Map.scss';
-import { AppContext } from '../../providers/app/App.provider';
 
-function Map() {
-
+const Map = () => {
   const { viewport, setViewport, country } = useContext(MapContext);
-  const { route } = useContext(AppContext)
-
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,7 +26,6 @@ function Map() {
   });
 
 
-  console.log('render map')
   return (
     <ReactMapGL
       {...viewport}
@@ -43,23 +37,8 @@ function Map() {
         height: '100vh'
       })}
     >  
-    <MarkersContainer />
-    {
-       country && !route && (
-           <Popup
-           className='popup'
-           latitude={country.location.lat}
-           longitude={country.location.long}
-           closeButton={false}
-           dynamicPosition={true}
-           offsetTop={250}
-           >
-               <InfoCard country={country} />
-           </Popup>
-       )
-       
-   } 
-   
+      <MarkersContainer />
+      {country && <InfoCard country={country} />} 
     </ReactMapGL>
   );
 }

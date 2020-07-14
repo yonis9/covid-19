@@ -28,4 +28,4 @@ const StaySafe = () => {
 }
 
 
-export default StaySafe;
+export default React.memo(StaySafe);

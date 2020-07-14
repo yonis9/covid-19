@@ -8,10 +8,9 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 const Graph = ({ title, color, pointer, history }) => {
-    console.log('render graph')
     const [isScaleTotal, setIsScaleTotal] = useState(false);
-    const [totalDataPoints, setTotalDataPoints] = useState([]);
-    const [dailydDataPoints, setDailydDataPoints] = useState([]);
+    const [graphData, setGraphData] = useState({ daily: [], total: [] });
+
 
     const fontOptions = {
             fontColor: '#b6b6b6',
@@ -47,31 +46,28 @@ const Graph = ({ title, color, pointer, history }) => {
             type: "area",
             xValueFormatString: "DD MMM YYYY",
             yValueFormatString: "#,###",
-            dataPoints: isScaleTotal ? totalDataPoints : dailydDataPoints
+            dataPoints: isScaleTotal ? graphData.total : graphData.daily
         }]
     }
 
 
     useEffect(() => {
-        if (history.length) {
-            const newDailyDataPoints = [];
-            const newTotalDataPoints = [];
-            let total = 0;
+            const daily = [];
+            const total = [];
+            let totalCount = 0;
 
             for (let day of history) {
-                newTotalDataPoints.push({
+                total.push({
                     x: new Date(day.date),
                     y: day[pointer]
                 })
-                newDailyDataPoints.push({
+                daily.push({
                     x: new Date(day.date),
-                    y: day[pointer]-total
+                    y: day[pointer]-totalCount
                 })
-                total=day[pointer];
+                totalCount=day[pointer];
             }
-            setTotalDataPoints(newTotalDataPoints);
-            setDailydDataPoints(newDailyDataPoints);
-        }
+            setGraphData({ daily, total })
     },[history, pointer])
 
 

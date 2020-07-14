@@ -7,22 +7,18 @@ import './Pie.scss';
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Pie = ({ breakdowns, query, total, title }) => {
-    console.log('render pie')
     const [dataPoints, setDataPoints] = useState([]);
 
     useEffect(() => {
-        const topCountries = breakdowns.sort((a,b) => 
-            b[query] - a[query]
-           ).slice(0,19);
+        const topCountries = breakdowns.sort((a,b) => b[query] - a[query]).slice(0,19);
         let totalTopCountries = 0;
         const mappedTopCountries = topCountries.map(country => {
             totalTopCountries += country[query];
-            return (
-            {
+            return ({
                 name: country.location.countryOrRegion,
                 y: country[query]/total*100
-            }
-        )});
+            })
+        });
         mappedTopCountries.push({ name: 'Rest Of The World', y: (total-totalTopCountries)/total*100 })
         setDataPoints(mappedTopCountries);
     }, [breakdowns, query, total]);
@@ -50,6 +46,7 @@ const Pie = ({ breakdowns, query, total, title }) => {
             dataPoints: dataPoints
         }]
     }
+
     return (
     <div className='pie'>
         <CanvasJSChart options={options}

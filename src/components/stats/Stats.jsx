@@ -13,8 +13,6 @@ import './Stats.scss';
 
 const Stats = () => {
     const { route, data, error } = useContext(AppContext);
-    console.log('render stats')
-
 
     return (
         <div className={`stats-container ${route === 'stats' && 'active'}`}>

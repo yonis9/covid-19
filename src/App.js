@@ -14,7 +14,7 @@ import ErrorBoundary from './ErrorBoundary';
 
 import './App.css';
 
-function App() {
+const App = () => {
   const { country } = useContext(MapContext);
 
   return (
