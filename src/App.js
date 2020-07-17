@@ -10,7 +10,7 @@ import Map from './components/map/Map';
 import Stats from './components/stats/Stats';
 import History from './components/history/History';
 import StaySafe from './components/stay-safe/StaySafe';
-import ErrorBoundary from './ErrorBoundary';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 
 import './App.css';
 

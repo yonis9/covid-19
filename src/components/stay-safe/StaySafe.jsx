@@ -12,7 +12,9 @@ const StaySafe = () => {
         <div className={`stay-safe ${route === 'stay-safe' && 'active'}`}>
             <CloseButton />
             <p>
-            As the number of people with COVID-19 continues to increase in the current pandemic, everyone has a role to play in taking care of ourselves and our loved ones, and slowing the spread of the new coronavirus. Here is what you can do:
+            As the number of people diagnosed with COVID-19 continually increases during the current pandemic,
+            everyone of us has a role to play by taking care of ourselves and our loved ones,
+            as well as slowing down the virus's spread. Here is what you can do:
             </p>
             <ul>
                 <li>Clean your home regularly, particularly frequently touched surfaces like</li>
