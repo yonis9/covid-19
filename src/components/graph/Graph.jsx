@@ -52,11 +52,11 @@ const Graph = ({ title, color, pointer, history }) => {
 
 
     useEffect(() => {
-            const daily = [];
-            const total = [];
-            let totalCount = 0;
+            // const daily = [];
+            // const total = [];
+            // let totalCount = 0;
 
-            for (let day of history) {
+            const { daily, total } = history.reduce(({ daily, total, totalCount }, day) => {
                 total.push({
                     x: new Date(day.date),
                     y: day[pointer]
@@ -66,7 +66,22 @@ const Graph = ({ title, color, pointer, history }) => {
                     y: day[pointer]-totalCount
                 })
                 totalCount=day[pointer];
-            }
+
+                return { daily, total, totalCount }
+            },{ total: [], daily: [] })
+
+
+            // for (let day of history) {
+            //     total.push({
+            //         x: new Date(day.date),
+            //         y: day[pointer]
+            //     })
+            //     daily.push({
+            //         x: new Date(day.date),
+            //         y: day[pointer]-totalCount
+            //     })
+            //     totalCount=day[pointer];
+            // }
             setGraphData({ daily, total })
     },[history, pointer])
 
