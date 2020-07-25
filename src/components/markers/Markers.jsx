@@ -9,6 +9,30 @@ const Markers = ({ data, error, category }) => {
     const [mappedMarkersData, setMappedData] = useState([])
 
     useEffect(() => {
+        const filterOutNonCases = (array, query) => array.filter(el => el[query] > 0);
+
+        const mapToQueries = (array, query) => array.map(el => el[query]);
+        
+        const calculateSize = (current, max) => (
+            current > 0.6 * max ? 160 :
+            current > 0.2 * max ? 120 :
+            current > 0.1 * max ? 100 :
+            current > 0.01 * max ? 80 :
+            current > 10000 ? 60 : 20
+            );
+
+        const mapData = (data, query) => {
+            const countriesWithCases = filterOutNonCases(data.stats.breakdowns, query);
+            const queriesArray = mapToQueries(countriesWithCases, query);
+            const max = Math.max(...queriesArray);
+
+            return countriesWithCases.map(country => {
+                country.size = calculateSize(country[query], max);
+                return country;
+            });
+        }
+
+
         if (error) {
             alert('Sorry, we are not able to get that data')
         }
@@ -17,26 +41,6 @@ const Markers = ({ data, error, category }) => {
         }
     }, [data, category, setMappedData, error])
 
-    const mapData = (data, query) => {
-        const filteredData = data.stats.breakdowns.filter(el => el[query] > 0);
-        const countedQueries = filteredData.map(el => el[query]);
-
-        const { min, max } = countedQueries.reduce((acc, queryCount) => ({
-                min: Math.min(queryCount, acc.min),
-                max: Math.max(queryCount, acc.max)
-        }), { min:  Number.MAX_SAFE_INTEGER, max: Number.MIN_SAFE_INTEGER })
-        
-        const diff = max-min;
-
-        return filteredData.map(el => {
-            el.size = el[query] > 0.6 * diff ? 160 :
-                      el[query] > 0.2 * diff ? 120 :
-                      el[query] > 0.1 * diff ? 100 :
-                      el[query] > 0.01 * diff ? 80 :
-                      el[query] > 10000 ? 60 : 20;
-            return el;
-        })
-    }
 
     return !!mappedMarkersData.length && 
     mappedMarkersData.filter(({ location: { lat, long }}) => lat && long)
