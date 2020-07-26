@@ -4,6 +4,7 @@ import './Circle.scss';
 
 const Circle = ({ category, country, setRoute, handleCountryChange }) => {
     const { size } = country;
+    
     const onCircleClick = () => {
         setRoute('country');
         handleCountryChange(country);

@@ -10,17 +10,26 @@ const Pie = ({ breakdowns, query, total, title }) => {
     const [dataPoints, setDataPoints] = useState([]);
 
     useEffect(() => {
-        const topCountries = breakdowns.sort((a,b) => b[query] - a[query]).slice(0,19);
-        let totalTopCountries = 0;
-        const mappedTopCountries = topCountries.map(country => {
-            totalTopCountries += country[query];
-            return ({
-                name: country.location.countryOrRegion,
-                y: country[query]/total*100
-            })
-        });
-        mappedTopCountries.push({ name: 'Rest Of The World', y: (total-totalTopCountries)/total*100 })
-        setDataPoints(mappedTopCountries);
+        const getDataPoints = (breakdowns, query) => {
+            const topCountries = breakdowns.sort((a,b) => b[query] - a[query]).slice(0,19);
+            const topCountriesData = topCountries.reduce(({ mappedTopCountries, totalTopCountries}, country) => {
+                mappedTopCountries.push({
+                    name: country.location.countryOrRegion,
+                    y: country[query] / total * 100
+                });
+                totalTopCountries += country[query];
+    
+                return { mappedTopCountries, totalTopCountries }
+            }, { mappedTopCountries: [], totalTopCountries: 0 });
+           
+            const { mappedTopCountries, totalTopCountries } = topCountriesData;
+            mappedTopCountries.push({ name: 'Rest Of The World', y: (total - totalTopCountries) / total * 100 });
+            
+            return mappedTopCountries;
+        }
+
+        setDataPoints(getDataPoints(breakdowns, query));
+        
     }, [breakdowns, query, total]);
 
 

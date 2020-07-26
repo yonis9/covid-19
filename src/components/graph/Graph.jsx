@@ -52,22 +52,22 @@ const Graph = ({ title, color, pointer, history }) => {
 
 
     useEffect(() => {
-            const getTotalAndDailyData = (history, pointer) => 
-                history.reduce(({ daily, total, totalCount }, day) => {
-                    total.push({
-                        x: new Date(day.date),
-                        y: day[pointer]
-                    })
-                    daily.push({
-                        x: new Date(day.date),
-                        y: day[pointer]-totalCount
-                    })
-                    totalCount=day[pointer];
-    
-                    return { daily, total, totalCount }
-                },{ total: [], daily: [], totalCount: 0 })
-                      
-            setGraphData(getTotalAndDailyData(history, pointer));
+        const getTotalAndDailyData = (history, pointer) => 
+            history.reduce(({ daily, total, totalCount }, day) => {
+                total.push({
+                    x: new Date(day.date),
+                    y: day[pointer]
+                })
+                daily.push({
+                    x: new Date(day.date),
+                    y: day[pointer]-totalCount
+                })
+                totalCount=day[pointer];
+
+                return { daily, total, totalCount }
+            },{ total: [], daily: [], totalCount: 0 })
+                    
+        setGraphData(getTotalAndDailyData(history, pointer));
 
     },[history, pointer])
 
