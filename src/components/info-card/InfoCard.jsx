@@ -32,16 +32,16 @@ const InfoCard = ({ country }) => {
                 <div className='country-name'>{countryOrRegion}</div>
                 <div className='description'>
                     <div className='category-container'>
-                        <span>Confirmed Cases: {totalConfirmedCases}</span>
-                        <span className='new-info confirmed'>+{newlyConfirmedCases}</span>
+                        <span>Confirmed Cases: {totalConfirmedCases.toLocaleString()}</span>
+                        <span className='new-info confirmed'>+{newlyConfirmedCases.toLocaleString()}</span>
                     </div>
                     <div className='category-container'>
-                        <span>Deaths: {totalDeaths}</span>
-                        <span className='new-info deaths'>+{newDeaths}</span>
+                        <span>Deaths: {totalDeaths.toLocaleString()}</span>
+                        <span className='new-info deaths'>+{newDeaths.toLocaleString()}</span>
                     </div>
                     <div className='category-container'>
-                        <span>Recovered: {totalRecoveredCases}</span>
-                        <span className='new-info recoverd'>+{newlyRecoveredCases}</span>
+                        <span>Recovered: {totalRecoveredCases.toLocaleString()}</span>
+                        <span className='new-info recoverd'>+{newlyRecoveredCases.toLocaleString()}</span>
                     </div>
                 </div>
             </div>
